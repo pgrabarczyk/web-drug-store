@@ -7,7 +7,7 @@ public class NoDrugLeftExcepotion extends Exception {
     private static final long serialVersionUID = -6685639016857177607L;
 
     public NoDrugLeftExcepotion(Drug drug) {
-	super(String.format("No more %s to buy :(", drug.getName()));
+	super(String.format("We don't have more %s to buy :(", drug.getName()));
     }
 
 }

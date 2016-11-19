@@ -38,6 +38,7 @@
 					<th>Name</th>
 					<th>Available</th>
 					<th>Buy one</th>
+					<th>Buy 10</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -48,7 +49,15 @@
 					<td>
 						<form action="#" th:action="@{/buy}" method="post">
 							<input type="hidden" id="id" name="id" th:value="${drug.id}" />
+							<input type="hidden" id="amount" name="amount" th:value="1" />
 							<input class="btn btn-primary" type="submit" value="Buy!"/>
+						</form>
+					</td>
+					<td>
+						<form action="#" th:action="@{/buy}" method="post">
+							<input type="hidden" id="id" name="id" th:value="${drug.id}" />
+							<input type="hidden" id="amount" name="amount" th:value="10" />
+							<input class="btn btn-primary" type="submit" value="Buy 10!"/>
 						</form>
 					</td>
 				</tr>

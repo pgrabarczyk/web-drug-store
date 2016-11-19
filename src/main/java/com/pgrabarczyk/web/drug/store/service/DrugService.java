@@ -21,12 +21,15 @@ public class DrugService {
 	return drugRepository.findAll();
     }
 
-    public String buy(@NonNull Long id) throws NoDrugLeftExcepotion {
+    public String buy(@NonNull Long id, int amount) throws NoDrugLeftExcepotion {
+	if (amount <= 0) {
+	    throw new IllegalArgumentException("Cannot buy negative value");
+	}
 	Drug drug = drugRepository.findById(id);
-	if(drug.getAmount() <=  0 ) {
+	if (drug.getAmount() < amount) {
 	    throw new NoDrugLeftExcepotion(drug);
 	}
-	drug.setAmount(drug.getAmount() - 1);
+	drug.setAmount(drug.getAmount() - amount);
 	drugRepository.save(drug);
 	return drug.getName();
     }

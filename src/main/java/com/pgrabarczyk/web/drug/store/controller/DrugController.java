@@ -38,12 +38,13 @@ public class DrugController {
 	model.addAttribute("drugList", drugList);
 	return "index";
     }
-
+   
     @RequestMapping(value = "buy", method = RequestMethod.POST)
-    public String buy(@RequestParam("id") Long id, Model model) throws IOException {
+    public String buy(@RequestParam("id") Long id, @RequestParam("amount") Integer amount, Model model) throws IOException {
 	try {
-	    drugService.buy(id);
+	    drugService.buy(id, amount);
 	} catch (NoDrugLeftExcepotion e) {
+	    log.debug(e.getMessage());
 	    model.addAttribute("error", e.getMessage());
 	}
 	return index(model);
