@@ -3,8 +3,6 @@ package com.pgrabarczyk.web.drug.store.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pgrabarczyk.web.drug.store.exception.NoDrugLeftExcepotion;
 import com.pgrabarczyk.web.drug.store.model.Drug;
 import com.pgrabarczyk.web.drug.store.service.DrugService;
 
@@ -41,9 +40,13 @@ public class DrugController {
     }
 
     @RequestMapping(value = "buy", method = RequestMethod.POST)
-    public void buy(@RequestParam("id") Long id, HttpServletResponse response) throws IOException {
-	drugService.buy(id);
-	response.sendRedirect("/");
+    public String buy(@RequestParam("id") Long id, Model model) throws IOException {
+	try {
+	    drugService.buy(id);
+	} catch (NoDrugLeftExcepotion e) {
+	    model.addAttribute("error", e.getMessage());
+	}
+	return index(model);
     }
 
     @ExceptionHandler(value = Exception.class)

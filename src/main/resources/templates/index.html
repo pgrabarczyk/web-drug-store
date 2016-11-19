@@ -22,7 +22,14 @@
 	</nav>
 
 	<div class="container">
-		
+
+		<div th:if="${error != null}" class="panel panel-danger">
+			<div class="panel-heading">Error!</div>
+			<div class="panel-body">
+				<span th:text="${error}"/>
+			</div>
+		</div>
+
 		<h1>Available drugs:</h1>
 		<table class="table table-striped table-bordered table-hover table-condensed">
 			<thead>
