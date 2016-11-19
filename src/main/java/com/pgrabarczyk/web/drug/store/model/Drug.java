@@ -24,9 +24,14 @@ public class Drug {
 
     private String name;
 
-    public Drug(String name) {
+    private int amount;
+    
+    public Drug(String name, int amount) {
 	super();
 	this.name = name;
+	this.amount = amount;
     }
+    
+    
 
 }

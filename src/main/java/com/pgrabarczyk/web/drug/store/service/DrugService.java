@@ -8,14 +8,23 @@ import org.springframework.stereotype.Service;
 import com.pgrabarczyk.web.drug.store.model.Drug;
 import com.pgrabarczyk.web.drug.store.repository.DrugRepository;
 
+import lombok.NonNull;
+
 @Service
 public class DrugService {
 
     @Autowired
     private DrugRepository drugRepository;
-    
+
     public List<Drug> list() {
 	return drugRepository.findAll();
     }
- 
+
+    public String buy(@NonNull Long id) {
+	Drug drug = drugRepository.findById(id);
+	drug.setAmount(drug.getAmount() - 1);
+	drugRepository.save(drug);
+	return drug.getName();
+    }
+
 }

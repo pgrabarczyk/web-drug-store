@@ -10,4 +10,6 @@ import com.pgrabarczyk.web.drug.store.model.Drug;
 @Repository
 public interface DrugRepository extends JpaRepository<Drug, Serializable> {
 
+    Drug findById(Long id);
+
 }

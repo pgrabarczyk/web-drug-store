@@ -16,9 +16,9 @@ public class InitData {
 
     @PostConstruct
     private void init() {
-	Drug vitC = new Drug("Vitamin C");
-	Drug partyPack = new Drug("Party Pack");
-	Drug ointment = new Drug("Ointment");
+	Drug vitC = new Drug("Vitamin C", 11);
+	Drug partyPack = new Drug("Party Pack", 69);
+	Drug ointment = new Drug("Ointment", 666);
 
 	drugRepository.save(vitC);
 	drugRepository.save(partyPack);
