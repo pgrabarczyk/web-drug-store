@@ -1,6 +1,9 @@
 package com.pgrabarczyk.web.drug.store.controller;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,8 +41,9 @@ public class DrugController {
     }
 
     @RequestMapping(value = "buy", method = RequestMethod.POST)
-    public @ResponseBody String buy(@RequestParam("id") Long id) {
-	return drugService.buy(id);
+    public void buy(@RequestParam("id") Long id, HttpServletResponse response) throws IOException {
+	drugService.buy(id);
+	response.sendRedirect("/");
     }
 
     @ExceptionHandler(value = Exception.class)
