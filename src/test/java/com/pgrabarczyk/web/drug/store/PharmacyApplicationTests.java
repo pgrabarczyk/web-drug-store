@@ -1,4 +1,4 @@
-package com.pgrabarczyk.pharmacy;
+package com.pgrabarczyk.web.drug.store;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
